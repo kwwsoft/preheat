@@ -6,13 +6,13 @@
 /*
   2,55 на 1%
    10% = 2,55*10 = 25
-   40% = 2,55 * 40 = 102  down value
+   35% = 2,55 * 30 = 90  down value
    60% = 2,55 * 60 = 153  up value
 */
 unsigned char duty;
 unsigned int adc_adc, adc_V, adc_Vprev;
-//напряжение на 1 шаг ацп
-const float ku = 5.0 / 256.0;
+//напряжение на 1 шаг ацп  с учетом делителя
+const float ku = (5.00 / 256.0);
 //------------------------------------------------------------------------------
 void InitMega(){
  DDRB = 0b11100111;
@@ -74,7 +74,7 @@ void ResetTimers(){
 }
 //------------------------------------------------------------------------------
 int My_ADC_Get_Sample(){
- short count = 7;
+ short count = 127;
  unsigned int summa = 0;
  //
  do{
@@ -85,12 +85,12 @@ int My_ADC_Get_Sample(){
    summa += ADCH;
   }while(count-- > 0);
  //
- return summa / 8;
+ return summa / 128;
 }
 //------------------------------------------------------------------------------
 void My_ShowU(){
  adc_adc = My_ADC_Get_Sample();
- adc_V = (float)adc_adc * ku * 100.0;
+ adc_V = ((float)adc_adc * ku) * 5.53 * 10.0;
  //если не поменялось - индикатор не дергаем
  if (adc_V != adc_Vprev){
   adc_Vprev = adc_V;

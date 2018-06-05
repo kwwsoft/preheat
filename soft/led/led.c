@@ -107,8 +107,7 @@ void LED_ShowD2(char var){
 }
 //------------------------------------------------------------------------------
 void LED_ShowValue(char var){
- LED_ShowD1((Dec2Bcd(var) & 0x0F));
- LED_ShowD2(((Dec2Bcd(var) & 0xF0)>>4));
+  LED_ShowD1((Dec2Bcd(var) & 0x0F));
+  LED_ShowD2(((Dec2Bcd(var) & 0xF0)>>4));
 }
 //------------------------------------------------------------------------------
-

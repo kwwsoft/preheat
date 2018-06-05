@@ -9,7 +9,7 @@
 #define key_down_long    5
 #define key_select_long  6
 //------------------------------
-#define duty_min          102
+#define duty_min          90
 #define duty_max          153
 //------------------------------------------------------------------------------
 void InitMega();
